@@ -2,10 +2,6 @@ import PySimpleGUI as sg
 
 symbols = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 
-def invert_list(listin):
-    listin.reverse()
-    return listin
-
 def to_quantity(value, radix):
     quantity = 0
     for i in range(0, len(value)):
