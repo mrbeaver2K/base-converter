@@ -3,20 +3,19 @@ import PySimpleGUI as sg
 symbols = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 
 def to_quantity(value, radix):
+    radix = int(radix)
     quantity = 0
-    for i in range(0, len(value)):
-        quantity += symbols.index(value[len(value) - (i + 1)]) * (int(radix) ** i)
+    for i in tuple(value):
+        quantity = quantity * radix + symbols.index(i) 
     return quantity
 
 def to_value(quantity, radix):
-    remainder = []
-    quotient = quantity
-    place = 0
     radix = int(radix)
-    while quotient != 0:
-        value = quotient
-        remainder.append(value % radix)
-        quotient = (value - remainder[place]) // radix
+    remainder = []
+    place = 0
+    while quantity != 0:
+        remainder.append(quantity % radix)
+        quantity //= radix
         place += 1
     out = []
     for i in range(1, place + 1):
